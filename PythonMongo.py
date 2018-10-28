@@ -2,7 +2,7 @@ from pymongo import MongoClient
 # pprint library is used to make the output look more pretty
 from pprint import pprint
 # connect to MongoDB, change the << MONGODB URL >> to reflect your own connection string
-uri = "mongodb://%s:%s@172.16.202.140:3306" % ("", "")
+uri = "mongodb://%s:%s@172.16.202.140:3306" % ("YOUR USERNAME", "YOUR PASSWORD")
 client = MongoClient(uri)
 db=client.admin
 # Issue the serverStatus command and print the results
