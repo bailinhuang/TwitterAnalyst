@@ -2,7 +2,8 @@ from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
 import TwitterKeys
- 
+import PythonMongo
+import json
 consumer_key= TwitterKeys.consumer_key
 consumer_secret= TwitterKeys.consumer_secret
 access_token= TwitterKeys.access_token
@@ -11,6 +12,8 @@ class StdOutListener(StreamListener):
     def on_data(self, data):
         print(data)
         print("----------------------------------------------------------------------------------------------------")
+        data_json = json.loads(data)
+        PythonMongo.insertDB(data_json)
         return True
 
     def on_error(self, status_code):
