@@ -8,6 +8,7 @@ consumer_key= TwitterKeys.consumer_key
 consumer_secret= TwitterKeys.consumer_secret
 access_token= TwitterKeys.access_token
 access_token_secret= TwitterKeys.access_token_secret
+
 class StdOutListener(StreamListener):
     def on_data(self, data):
         print(data)

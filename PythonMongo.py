@@ -7,7 +7,6 @@ db=client.admin
 # Issue the serverStatus command and print the results
 serverStatusResult=db.command("serverStatus")
 pprint(serverStatusResult)
-
 db = client.test #aqui va la bd, en mi caso se llama test
 test = db.test #aqui va la collection, en mi caso tambien se llama test
 
