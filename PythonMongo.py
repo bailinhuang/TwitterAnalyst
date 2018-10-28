@@ -7,13 +7,12 @@ db=client.admin
 # Issue the serverStatus command and print the results
 serverStatusResult=db.command("serverStatus")
 pprint(serverStatusResult)
-db = client.test
-test = db.test
-print(test.find_one())
-data = {"name": "Don A"}
-data_id = test.insert_one(data).inserted_id
-print(test.find_one(data_id))
 
-git filter-branch --force --index-filter
-'git rm --cached --ignore-unmatch TwitterConnect.py'
---prune-empty --tag-name-filter cat -- --all
+db = client.test #aqui va la bd, en mi caso se llama test
+test = db.test #aqui va la collection, en mi caso tambien se llama test
+
+def insertDB(data):
+    global test
+    data_id = test.insert_one(data).inserted_id
+    print("Se inserta: \n")
+    print(test.find_one(data_id))
