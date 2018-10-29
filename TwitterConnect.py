@@ -1,6 +1,4 @@
-from tweepy.streaming import StreamListener
-from tweepy import OAuthHandler
-from tweepy import Stream
+import tweepy
 import TwitterKeys
 import PythonMongo
 import json
@@ -9,13 +7,21 @@ consumer_secret= TwitterKeys.consumer_secret
 access_token= TwitterKeys.access_token
 access_token_secret= TwitterKeys.access_token_secret
 
-class StdOutListener(StreamListener):
+class StdOutListener(tweepy.StreamListener):
+
+    # def on_data(self, data):
+    #     print(data)
+    #     print("----------------------------------------------------------------------------------------------------")
+    #     data_json = json.loads(data)
+    #     PythonMongo.insertDB(data_json)
+    #     return True
+
     def on_data(self, data):
-        print(data)
-        print("----------------------------------------------------------------------------------------------------")
-        data_json = json.loads(data)
-        PythonMongo.insertDB(data_json)
-        return True
+        # Decode the JSON data
+        tweet = json.loads(data)
+
+        # Print out the Tweet
+        print('@%s: %s' % (tweet['user']['screen_name'], tweet['text'].encode('ascii', 'ignore')))
 
     def on_error(self, status_code):
         print(status_code)
@@ -24,9 +30,12 @@ class StdOutListener(StreamListener):
 if __name__ == "__main__":
 
     listener = StdOutListener()
-    auth = OAuthHandler(consumer_key,consumer_secret)
+    auth = tweepy.OAuthHandler(consumer_key,consumer_secret)
     auth.set_access_token(access_token,access_token_secret)
+    twitter_api = tweepy.API(auth, wait_on_rate_limit=True)
+    bluthquotes_tweets = twitter_api.user_timeline(screen_name='elonmusk', count=100) #cambiar por el username de twitter
+    for status in bluthquotes_tweets:
+        print(status.text)
+    # stream = tweepy.Stream(auth, listener)
 
-    stream = Stream(auth, listener)
-
-    stream.filter(track=['china'])
+    # stream.filter(track=['china'])
