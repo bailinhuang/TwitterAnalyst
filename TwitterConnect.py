@@ -7,6 +7,7 @@ consumer_secret= TwitterKeys.consumer_secret
 access_token= TwitterKeys.access_token
 access_token_secret= TwitterKeys.access_token_secret
 spain = [-6.6317490496,36.8911825246,-0.0331033866,42.7732057225]
+#http://boundingbox.klokantech.com/ usando CSV RAW
 class StdOutListener(tweepy.StreamListener):
 
     def on_data(self, data):
