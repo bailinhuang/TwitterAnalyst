@@ -34,9 +34,9 @@ if __name__ == "__main__":
     auth = tweepy.OAuthHandler(consumer_key,consumer_secret)
     auth.set_access_token(access_token,access_token_secret)
     twitter_api = tweepy.API(auth, wait_on_rate_limit=True)
-    bluthquotes_tweets = twitter_api.user_timeline(screen_name='elonmusk', count=100) #cambiar por el username de twitter
-    for status in bluthquotes_tweets:
-        print(status.text)
+    # bluthquotes_tweets = twitter_api.user_timeline(screen_name='elonmusk', count=100) #cambiar por el username de twitter
+    # for status in bluthquotes_tweets:
+    #     print(status.text)
     stream = tweepy.Stream(auth, listener)
 
-    stream.filter(track=['bendecir'], locations=spain)
+    stream.filter(track=['lgbt'], languages=['es'])
