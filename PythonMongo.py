@@ -10,7 +10,7 @@ db=client.admin
 # serverStatusResult=db.command("serverStatus")
 # pprint(serverStatusResult)
 db = client.db_proyecto #aqui va la bd, en mi caso se llama test
-tweets = db.tweets_lgbt_es  #aqui va la collection, en mi caso tambien se llama test
+tweets = db.tweets_bendecir_es  #aqui va la collection, en mi caso tambien se llama test
 
 def insertDB(data):
     global tweets

@@ -34,9 +34,11 @@ if __name__ == "__main__":
     auth = tweepy.OAuthHandler(consumer_key,consumer_secret)
     auth.set_access_token(access_token,access_token_secret)
     twitter_api = tweepy.API(auth, wait_on_rate_limit=True)
+    for tweet in tweepy.Cursor(twitter_api.search, q="bendecir -filter:retweets", lang="es").items(500):
+        PythonMongo.insertDB(tweet._json)
     # bluthquotes_tweets = twitter_api.user_timeline(screen_name='elonmusk', count=100) #cambiar por el username de twitter
     # for status in bluthquotes_tweets:
     #     print(status.text)
-    stream = tweepy.Stream(auth, listener)
+    # stream = tweepy.Stream(auth, listener)
 
-    stream.filter(track=['lgbt'], languages=['es'])
+    # stream.filter(track=['lgbt'], languages=['es'])
